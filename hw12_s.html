@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hw12</title>
+</head>
+<body>
+    
+</body>
+<script>
+
+    // ----------------Задание 1---------------
+    let someObj = {};
+
+    function isEmpty(obj) {
+        let countKeys = 0;
+        for (let key in obj) {
+            ++countKeys;
+        }
+        return (countKeys > 0 ? false : true);
+    }
+    
+    alert (isEmpty(someObj));
+
+    // ----------------Задание 2---------------
+    let salaries = {
+        John: 100,
+        Ann: 160,
+        Pete: 130,
+    }
+    function giveMeSum(obj) {
+        let sum = 0;
+        for (let key in obj) {            
+            if (typeof obj[key] == 'number') {
+                sum = sum + obj[key];              
+            }
+        }
+        return sum;        
+    }
+    alert (giveMeSum(salaries));
+
+    // ----------------Задание 3---------------
+    let calculator = {
+        read() {
+            calculator.first = +prompt('Введите первое число');
+            calculator.second = +prompt('Введите второе число');
+        },
+        sum() {
+            let sum = 0;            
+            for (let key in this) {            
+                if (typeof this[key] == 'number') {
+                    sum = sum + this[key];              
+                }
+            }
+            return sum;  
+        },
+        mul() {
+            let mul = 1;            
+            for (let key in this) {            
+                if (typeof this[key] == 'number') {
+                    mul = mul * this[key];              
+                }
+            }
+            return mul;     
+        },
+    }
+    calculator.read();
+    alert('Сумма чисел = ' + calculator.sum());
+    alert('Произведение чисел = ' + calculator.mul());
+
+    // ----------------Задание 4---------------
+    function A() {};
+    function B() {return a;};
+    let a = new A;
+    let b = new B;
+    alert(a == b);
+
+    // ----------------Задание 5---------------
+    function askPassword(ok, fail) {
+    let password = prompt("Password?", '');
+    if (password == "rockstar") ok();
+    else fail();
+    }
+    let user = {
+    name: 'Вася',
+    loginOk() {
+    alert(`${this.name} logged in`);
+    },
+    loginFail() {
+    alert(`${this.name} failed to log in`);
+    },
+    };
+    askPassword(user.loginOk.bind(user), user.loginFail.bind(user));
+</script>
+</html>
